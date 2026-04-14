@@ -296,7 +296,7 @@ Related issue: [#9751](https://github.com/harvester/harvester/issues/9751)
 
 ### 5. Upgrade may get stuck in PreparingRepo when node subnet overlaps with KubeVirt default masquerade CIDR
 
-The upgrade process may become stuck in the `PreparingRepo` phase when the node network overlaps with KubeVirt’s default masquerade CIDR (`10.0.2.0/24`). In this situation, the upgrade repository VM (`upgrade-repo-hvst-*`) is running but not reachable from other nodes.
+The upgrade process may become stuck in the `PreparingRepo` phase when the node network overlaps with KubeVirt’s default masquerade CIDR (`10.0.2.0/24`). In this situation, the upgrade repository VM (`upgrade-repo-hvst-xxxx`) is running but not reachable from other nodes.
 
 This issue occurs because KubeVirt uses `10.0.2.0/24` as the default internal network for virtual machines when `VMNetworkCIDR` is not explicitly configured. If the Harvester nodes are also using this subnet, a routing conflict occurs between the VM guest network and the host network.
 
@@ -305,7 +305,7 @@ You may encounter the following symptoms:
   ```
   $ kubectl -n harvester-system get vm
   NAME                              AGE   STATUS    READY
-  upgrade-repo-hvst-upgrade-xxxxx   XXm   Running   False
+  upgrade-repo-hvst-xxxx            XXm   Running   False
   ```
 
 The readiness probe fails with timeout errors:
@@ -343,8 +343,8 @@ To address the issue, perform the following steps:
 
   2. Restart the virtual machine:
 
-    ```
-    $ virtctl stop upgrade-repo-<upgrade-name> -n harvester-system
-    $ virtctl start upgrade-repo-<upgrade-name> -n harvester-system
-    ```
+      ```
+      $ virtctl stop upgrade-repo-<upgrade-name> -n harvester-system
+      $ virtctl start upgrade-repo-<upgrade-name> -n harvester-system
+      ```
     
