@@ -436,4 +436,4 @@ The existing CloudCredential still references the old Harvester cluster ID, whic
 3. Create a new Harvester CloudCredential.
 4. Retry provisioning the downstream cluster.
 
-Related issue: [#53642](https://github.com/harvester/harvester/issues/53642)
+Related issue: [#53642](https://github.com/rancher/rancher/issues/53642)

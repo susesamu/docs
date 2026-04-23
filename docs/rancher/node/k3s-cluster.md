@@ -96,7 +96,7 @@ apt:
   https_proxy: http://192.168.0.1:3128
 ```
 
-### Known Issue: Cannot provision K3S after re-registering cluster
+### Known Issue: Cannot provision K3s after re-registering cluster
 
 Cluster provisioning may fail with an error similar to: 
 
